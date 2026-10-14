@@ -1,0 +1,286 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 560px;
+
+  overflow: hidden;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   IMAGEN DE FONDO
+======================================== */
+
+.background {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.backgroundImage {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ========================================
+   OVERLAY
+======================================== */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(250, 247, 223, 0.96) 0%,
+    rgba(250, 247, 223, 0.85) 25%,
+    rgba(250, 247, 223, 0.25) 48%,
+    rgba(250, 247, 223, 0) 70%
+  );
+
+  z-index: 1;
+}
+
+/* ========================================
+   CONTENEDOR
+======================================== */
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 2;
+
+  padding-block: 5rem;
+}
+
+/* ========================================
+   CONTENIDO
+======================================== */
+
+.content {
+  max-width: 540px;
+}
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.8rem;
+
+  font-family: $font-primary;
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  color: $color-burgundy;
+}
+
+.title {
+  margin: 0 0 1.5rem;
+
+  font-family: $font-heading;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 400;
+
+  line-height: 0.98;
+  letter-spacing: -2px;
+
+  color: $color-burgundy;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.description {
+  max-width: 420px;
+
+  margin-bottom: 2rem;
+
+  font-family: $font-primary;
+  font-size: 1rem;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 1rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 0.8rem 1.4rem;
+
+  border: 2px solid $color-burgundy;
+  border-radius: 50px;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  text-align: center;
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.primaryButton {
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-brown;
+    border-color: $color-brown;
+  }
+}
+
+.secondaryButton {
+  background-color: rgba(250, 247, 223, 0.85);
+  color: $color-burgundy;
+
+  &:hover {
+    background-color: $color-burgundy;
+    color: $color-white;
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 500px;
+  }
+
+  .content {
+    max-width: 450px;
+  }
+
+  .title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(250, 247, 223, 0.96) 0%,
+      rgba(250, 247, 223, 0.75) 45%,
+      rgba(250, 247, 223, 0.05) 100%
+    );
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 620px;
+    align-items: flex-start;
+  }
+
+  .backgroundImage {
+    object-position: center bottom;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(250, 247, 223, 0.98) 0%,
+      rgba(250, 247, 223, 0.92) 28%,
+      rgba(250, 247, 223, 0.55) 48%,
+      rgba(250, 247, 223, 0) 78%
+    );
+  }
+
+  .container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 10vw, 4rem);
+    letter-spacing: -1.5px;
+
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    max-width: 310px;
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+
+    margin-bottom: 1.2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0.7rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    min-height: 40px;
+
+    padding: 0.7rem 1.2rem;
+
+    font-size: 0.65rem;
+  }
+}

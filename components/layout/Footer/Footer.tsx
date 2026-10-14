@@ -81,6 +81,7 @@ export default function Footer() {
           <Link
             href={siteConfig.social.instagram}
             aria-label="Instagram de Churrería La Rubí"
+            target="_blank"
           >
             <FaInstagram />
           </Link>
@@ -88,6 +89,7 @@ export default function Footer() {
           <Link
             href={siteConfig.social.facebook}
             aria-label="Facebook de Churrería La Rubí"
+            target="_blank"
           >
             <FaFacebookF />
           </Link>

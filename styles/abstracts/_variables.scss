@@ -23,3 +23,25 @@ $breakpoint-desktop: 1024px;
 
 // Transiciones
 $transition-default: 250ms ease;
+
+/* ========================================
+   LAYOUT
+======================================== */
+
+$container-max-width: 1440px;
+
+/* Espaciado horizontal */
+
+$spacing-mobile: 20px;
+$spacing-mobile-lg: 24px;
+$spacing-tablet: 32px;
+$spacing-desktop: 48px;
+$spacing-desktop-lg: 64px;
+
+/* ========================================
+   SECTION SPACING
+======================================== */
+
+$section-spacing-desktop: 80px;
+$section-spacing-tablet: 64px;
+$section-spacing-mobile: 48px;
