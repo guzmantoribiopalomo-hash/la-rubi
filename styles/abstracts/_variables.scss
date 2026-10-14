@@ -1,0 +1,25 @@
+// ========================================
+// CHURRERÍA LA RUBÍ
+// DESIGN TOKENS
+// ========================================
+
+// Colores
+$color-cream: #faf7df;
+$color-burgundy: #9e1525; // Provisional
+$color-brown: #4b3325;
+$color-dark: #2d241f;
+$color-white: #ffffff;
+
+// Tipografías
+$font-primary: var(--font-montserrat), Arial, sans-serif;
+$font-heading: var(--font-playfair), Georgia, serif;
+
+// Layout
+$container-max-width: 1280px;
+
+// Breakpoints
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Transiciones
+$transition-default: 250ms ease;

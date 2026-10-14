@@ -1,0 +1,20 @@
+@use "abstracts/variables" as *;
+@use "base/reset";
+@use "base/typography";
+
+:root {
+  --color-cream: #{$color-cream};
+  --color-burgundy: #{$color-burgundy};
+  --color-brown: #{$color-brown};
+  --color-dark: #{$color-dark};
+}
+
+body {
+  background-color: $color-cream;
+  color: $color-dark;
+}
+
+::selection {
+  background-color: $color-burgundy;
+  color: $color-white;
+}

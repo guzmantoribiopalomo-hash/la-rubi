@@ -1,0 +1,35 @@
+@use "@/styles/abstracts/variables" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem 2rem;
+
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  border-radius: 50px;
+
+  font-family: $font-primary;
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  transition:
+    background-color $transition-default,
+    transform $transition-default;
+
+  &:hover {
+    background-color: darken($color-burgundy, 8%);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-brown;
+    outline-offset: 4px;
+  }
+}
