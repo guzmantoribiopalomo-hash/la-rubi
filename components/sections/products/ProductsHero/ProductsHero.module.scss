@@ -1,0 +1,485 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   PRODUCTS HERO
+======================================== */
+
+.hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 420px;
+
+  overflow: hidden;
+
+  background-color: $color-cream;
+
+  isolation: isolate;
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  z-index: 0;
+  pointer-events: none;
+
+  /* ========================================
+     LIGHT GRADIENT OVERLAY
+  ======================================== */
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    background: linear-gradient(
+      90deg,
+      rgba(250, 247, 225, 0.98) 0%,
+      rgba(250, 247, 225, 0.94) 15%,
+      rgba(250, 247, 225, 0.78) 28%,
+      rgba(250, 247, 225, 0.45) 40%,
+      rgba(250, 247, 225, 0.12) 55%,
+      rgba(250, 247, 225, 0) 70%
+    );
+  }
+}
+
+/* ========================================
+   BACKGROUND IMAGE
+======================================== */
+
+.image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ========================================
+   RESPONSIVE IMAGES
+======================================== */
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-width: 0;
+  min-height: inherit;
+
+  gap: 2rem;
+
+  padding-block: 3rem;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 390px;
+  min-width: 0;
+
+  z-index: 2;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.25rem;
+
+  font-family: $font-heading;
+  font-size: clamp(3rem, 4.2vw, 4.8rem);
+  font-weight: 400;
+
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  width: 100%;
+  max-width: 350px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.95rem;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   DECORATIVE TEXT
+======================================== */
+
+.decorativeText {
+  position: absolute;
+
+  top: 24%;
+  right: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  max-width: 230px;
+
+  font-family: cursive;
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
+  font-style: italic;
+  font-weight: 500;
+
+  line-height: 1.35;
+  text-align: right;
+
+  color: $color-white;
+
+  transform: rotate(-8deg);
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+/* ========================================
+   DECORATIVE LINE
+======================================== */
+
+.decorativeLine {
+  display: block;
+
+  width: 75px;
+  height: 18px;
+
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+
+  transform: rotate(-10deg);
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 460px;
+  }
+
+  .container {
+    padding-block: 3.5rem;
+  }
+
+  .content {
+    max-width: 430px;
+  }
+
+  .title {
+    font-size: clamp(4rem, 4.5vw, 5.2rem);
+  }
+
+  .description {
+    max-width: 380px;
+    font-size: 1rem;
+  }
+
+  .decorativeText {
+    right: 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 390px;
+  }
+
+  .container {
+    padding-block: 2.5rem;
+  }
+
+  .content {
+    max-width: 330px;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 5vw, 4rem);
+  }
+
+  .description {
+    max-width: 300px;
+    font-size: 0.85rem;
+  }
+
+  .decorativeText {
+    top: 22%;
+    right: 1.5rem;
+
+    max-width: 170px;
+
+    font-size: 1.1rem;
+  }
+
+  .decorativeLine {
+    width: 60px;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 480px;
+
+    align-items: flex-start;
+  }
+
+  /* ========================================
+     BACKGROUND
+  ======================================== */
+
+  .background {
+    inset: 0;
+  }
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .image {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* ========================================
+     CONTAINER
+  ======================================== */
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    min-height: 480px;
+
+    gap: 0;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* ========================================
+     CONTENT
+  ======================================== */
+
+  .content {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  /* ========================================
+     EYEBROW
+  ======================================== */
+
+  .eyebrow {
+    margin-bottom: 0.5rem;
+
+    font-size: 0.65rem;
+    letter-spacing: 0.3px;
+  }
+
+  /* ========================================
+     TITLE
+  ======================================== */
+
+  .title {
+    margin-bottom: 0.9rem;
+
+    font-size: clamp(2.8rem, 10vw, 3.8rem);
+
+    line-height: 0.95;
+    letter-spacing: -1px;
+  }
+
+  /* ========================================
+     DESCRIPTION
+  ======================================== */
+
+  .description {
+    max-width: 245px;
+
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  /* ========================================
+     DECORATIVE TEXT
+  ======================================== */
+
+  .decorativeText {
+    top: auto;
+    right: 1.5rem;
+    bottom: 2rem;
+
+    max-width: 170px;
+
+    font-size: 1rem;
+    line-height: 1.25;
+
+    transform: rotate(-8deg);
+
+    color: $color-burgundy;
+  }
+
+  .decorativeLine {
+    width: 55px;
+    height: 12px;
+
+    margin-top: 0.35rem;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .hero {
+    min-height: 450px;
+  }
+
+  .container {
+    min-height: 450px;
+
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .content {
+    max-width: 230px;
+  }
+
+  .eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 10vw, 3.2rem);
+  }
+
+  .description {
+    max-width: 220px;
+    font-size: 0.72rem;
+  }
+
+  .decorativeText {
+    right: 1rem;
+    bottom: 1.5rem;
+
+    max-width: 140px;
+
+    font-size: 0.85rem;
+  }
+
+  .decorativeLine {
+    width: 45px;
+  }
+}
