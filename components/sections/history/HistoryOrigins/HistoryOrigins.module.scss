@@ -1,0 +1,401 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   HISTORY ORIGINS
+======================================== */
+
+.origins {
+  width: 100%;
+  min-width: 0;
+
+  background-color: $color-cream;
+
+  overflow: hidden;
+
+  scroll-margin-top: 90px;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.15fr)
+    minmax(0, 0.75fr);
+
+  align-items: center;
+
+  gap: clamp(1.5rem, 3vw, 4rem);
+
+  padding-block: 3.5rem;
+
+  min-width: 0;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.25rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2.5rem, 3vw, 4rem);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -1px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 420px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  line-height: 1.65;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   HISTORICAL IMAGE
+======================================== */
+
+.imageWrapper {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1.3 / 1;
+
+  overflow: hidden;
+
+  border: 8px solid #f0e4cb;
+  border-radius: 4px;
+
+  background-color: #d7c2a4;
+
+  box-shadow:
+    0 4px 12px rgba(40, 25, 15, 0.12),
+    0 0 0 1px rgba(90, 60, 35, 0.15);
+
+  transform: rotate(-2deg);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* ========================================
+   HISTORICAL IMAGE CONTENT
+======================================== */
+
+.image {
+  object-fit: cover;
+  object-position: center;
+
+  filter: sepia(0.2) contrast(1.05);
+
+  transition: transform 0.5s ease;
+}
+
+/* ========================================
+   HISTORICAL IMAGE HOVER
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .imageWrapper:hover {
+    transform: rotate(0deg) translateY(-3px);
+
+    box-shadow:
+      0 8px 20px rgba(40, 25, 15, 0.18),
+      0 0 0 1px rgba(90, 60, 35, 0.15);
+  }
+
+  .imageWrapper:hover .image {
+    transform: scale(1.05);
+  }
+}
+
+/* ========================================
+   MASCOT WRAPPER
+======================================== */
+
+.mascotWrapper {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-width: 0;
+
+  gap: 1rem;
+}
+
+/* ========================================
+   MASCOT TEXT
+======================================== */
+
+.mascotText {
+  display: block;
+
+  font-family: $font-heading;
+  font-size: clamp(1.4rem, 2vw, 2.2rem);
+  font-style: italic;
+  font-weight: 400;
+
+  line-height: 1.15;
+
+  text-align: center;
+
+  color: $color-burgundy;
+
+  transform: rotate(-8deg);
+}
+
+/* ========================================
+   MASCOT IMAGE WRAPPER
+======================================== */
+
+.mascotImage {
+  position: relative;
+
+  width: 100%;
+  max-width: 210px;
+
+  aspect-ratio: 0.8 / 1;
+}
+
+/* ========================================
+   MASCOT IMAGE
+======================================== */
+
+.mascot {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .container {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    gap: 2rem;
+
+    padding-block: 3rem;
+  }
+
+  .content {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .imageWrapper {
+    grid-column: 2;
+    grid-row: 1;
+
+    aspect-ratio: 1.1 / 1;
+  }
+
+  .mascotWrapper {
+    grid-column: 1 / -1;
+    grid-row: 2;
+
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 2rem;
+  }
+
+  .mascotText {
+    font-size: 1.8rem;
+  }
+
+  .mascotImage {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  .title {
+    font-size: clamp(2.3rem, 4vw, 3.2rem);
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .origins {
+    scroll-margin-top: 75px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 1.75rem;
+
+    padding-block: 2.5rem;
+  }
+
+  /* CONTENT */
+
+  .content {
+    width: 100%;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.5rem;
+
+    font-size: 0.7rem;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+
+    font-size: clamp(2.2rem, 8vw, 3rem);
+
+    line-height: 1;
+    letter-spacing: -0.8px;
+  }
+
+  .description {
+    max-width: 100%;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* HISTORICAL IMAGE */
+
+  .imageWrapper {
+    width: calc(100% - 12px);
+
+    margin-inline: auto;
+
+    aspect-ratio: 1.35 / 1;
+
+    border-width: 6px;
+
+    transform: rotate(-1deg);
+  }
+
+  /* MASCOT */
+
+  .mascotWrapper {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.5rem;
+
+    width: 100%;
+  }
+
+  .mascotText {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+
+    text-align: right;
+
+    transform: rotate(-7deg);
+  }
+
+  .mascotImage {
+    width: 130px;
+    max-width: 130px;
+
+    flex-shrink: 0;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 2.1rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .mascotWrapper {
+    gap: 1rem;
+  }
+
+  .mascotText {
+    font-size: 1.35rem;
+  }
+
+  .mascotImage {
+    width: 110px;
+    max-width: 110px;
+  }
+}

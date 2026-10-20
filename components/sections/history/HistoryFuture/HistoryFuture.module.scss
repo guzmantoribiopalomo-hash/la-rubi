@@ -1,0 +1,499 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   HISTORY FUTURE
+======================================== */
+
+.future {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  background-color: $color-burgundy;
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(0, 0.7fr)
+    minmax(0, 1fr);
+
+  align-items: end;
+
+  gap: clamp(1.5rem, 3vw, 3rem);
+
+  min-height: 280px;
+
+  padding-block: 3.5rem;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  grid-column: 1;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  color: $color-white;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2.3rem, 3vw, 4rem);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -1px;
+
+  color: $color-white;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 550px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+
+  line-height: 1.65;
+
+  color: $color-white;
+}
+
+/* ========================================
+   CTA WRAPPER
+======================================== */
+
+.ctaWrapper {
+  grid-column: 2;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  min-width: 0;
+
+  padding-bottom: 0.25rem;
+}
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  min-height: 44px;
+
+  padding: 0.75rem 1.5rem;
+
+  border: 2px solid $color-cream;
+  border-radius: 50px;
+
+  background-color: $color-cream;
+  color: $color-burgundy;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background-color: transparent;
+    color: $color-white;
+
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-white;
+    outline-offset: 4px;
+  }
+
+  span {
+    font-size: 1rem;
+    line-height: 1;
+  }
+}
+
+/* ========================================
+   PRODUCT IMAGE WRAPPER
+======================================== */
+
+.imageWrapper {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 35%;
+
+  z-index: 0;
+
+  overflow: hidden;
+}
+
+/* ========================================
+   PRODUCT IMAGE
+======================================== */
+
+.image {
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1);
+
+  transition: transform 600ms ease;
+}
+
+/* ========================================
+   IMAGE GRADIENT
+======================================== */
+
+.imageWrapper::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    $color-burgundy 0%,
+    rgba(158, 13, 36, 0.85) 20%,
+    rgba(158, 13, 36, 0.25) 55%,
+    transparent 100%
+  );
+}
+
+/* ========================================
+   DECORATIVE LINES
+======================================== */
+
+.decoration {
+  position: absolute;
+
+  left: -65px;
+  bottom: -75px;
+
+  width: 220px;
+  height: 220px;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  span {
+    position: absolute;
+
+    border: 6px solid $color-white;
+    border-radius: 50%;
+
+    opacity: 0.95;
+  }
+
+  span:nth-child(1) {
+    inset: 0;
+  }
+
+  span:nth-child(2) {
+    inset: 22px;
+  }
+
+  span:nth-child(3) {
+    inset: 44px;
+  }
+}
+
+/* ========================================
+   HOVER EFFECTS
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .future:hover .image {
+    transform: scale(1.04);
+  }
+}
+
+/* ========================================
+   LARGE DESKTOP
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    min-height: 300px;
+  }
+
+  .imageWrapper {
+    width: 38%;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .container {
+    grid-template-columns:
+      minmax(0, 1.5fr)
+      minmax(0, 0.8fr);
+
+    min-height: 260px;
+
+    gap: 1.5rem;
+
+    padding-block: 3rem;
+  }
+
+  .content {
+    grid-column: 1;
+  }
+
+  .ctaWrapper {
+    grid-column: 2;
+
+    justify-content: flex-start;
+  }
+
+  .title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .imageWrapper {
+    width: 42%;
+    opacity: 0.7;
+  }
+
+  .decoration {
+    left: -100px;
+    bottom: -100px;
+
+    transform: scale(0.8);
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .future {
+    min-height: 0;
+  }
+
+  /* CONTAINER */
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 1.25rem;
+
+    min-height: 0;
+
+    padding-top: 2.5rem;
+    padding-bottom: 12rem;
+  }
+
+  /* CONTENT */
+
+  .content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+  }
+
+  /* EYEBROW */
+
+  .eyebrow {
+    margin-bottom: 0.5rem;
+
+    font-size: 0.7rem;
+  }
+
+  /* TITLE */
+
+  .title {
+    max-width: 300px;
+
+    margin-bottom: 0.85rem;
+
+    font-size: clamp(2.2rem, 8vw, 3rem);
+
+    line-height: 1;
+    letter-spacing: -0.8px;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 350px;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* CTA */
+
+  .ctaWrapper {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+
+    justify-content: flex-start;
+
+    padding: 0;
+  }
+
+  /* BUTTON */
+
+  .button {
+    min-height: 42px;
+
+    padding: 0.7rem 1.2rem;
+
+    font-size: 0.65rem;
+  }
+
+  /* IMAGE */
+
+  .imageWrapper {
+    top: auto;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 220px;
+
+    opacity: 1;
+  }
+
+  .image {
+    object-position: center 45%;
+  }
+
+  /* IMAGE GRADIENT */
+
+  .imageWrapper::after {
+    background: linear-gradient(
+      180deg,
+      $color-burgundy 0%,
+      rgba(158, 13, 36, 0.65) 25%,
+      rgba(158, 13, 36, 0.1) 70%,
+      transparent 100%
+    );
+  }
+
+  /* DECORATION */
+
+  .decoration {
+    left: -110px;
+    bottom: -100px;
+
+    transform: scale(0.65);
+
+    opacity: 0.8;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    padding-bottom: 10rem;
+  }
+
+  .title {
+    font-size: 2.1rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .imageWrapper {
+    height: 190px;
+  }
+
+  .button {
+    font-size: 0.6rem;
+  }
+}
