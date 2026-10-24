@@ -1,0 +1,50 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   REQUIREMENTS + FAQ
+======================================== */
+
+.informationSection {
+  width: 100%;
+  background-color: $color-cream;
+}
+
+.informationGrid {
+  @include container;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+  align-items: stretch;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   DESKTOP
+======================================== */
+
+@media (min-width: 1200px) {
+  .informationGrid {
+    > :first-child {
+      border-right: 1px solid rgba(80, 65, 55, 0.2);
+    }
+  }
+}
+
+/* ========================================
+   TABLET + MOBILE
+======================================== */
+
+@media (max-width: 1199px) {
+  .informationGrid {
+    grid-template-columns: 1fr;
+
+    > :first-child {
+      border-right: 0;
+      border-bottom: 1px solid rgba(80, 65, 55, 0.2);
+    }
+  }
+}

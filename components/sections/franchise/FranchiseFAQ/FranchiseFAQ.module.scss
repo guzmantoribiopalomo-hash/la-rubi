@@ -1,0 +1,341 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   FRANCHISE FAQ
+======================================== */
+
+.faq {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 3.5rem 0 3.5rem 2.5rem;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.75rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2.2rem, 2.5vw, 3.1rem);
+  font-weight: 400;
+
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   ACCORDION
+======================================== */
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   ACCORDION ITEM
+======================================== */
+
+.item {
+  width: 100%;
+  min-width: 0;
+
+  border-bottom: 1px solid rgba(80, 65, 55, 0.25);
+
+  &:first-child {
+    border-top: 1px solid rgba(80, 65, 55, 0.25);
+  }
+}
+
+.questionHeading {
+  margin: 0;
+}
+
+/* ========================================
+   QUESTION
+======================================== */
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  width: 100%;
+  min-height: 60px;
+
+  padding: 1rem 0;
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+  color: $color-burgundy;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-burgundy;
+    outline-offset: 3px;
+  }
+}
+
+/* ========================================
+   QUESTION TEXT
+======================================== */
+
+.questionText {
+  flex: 1;
+  min-width: 0;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  line-height: 1.45;
+
+  color: inherit;
+}
+
+/* ========================================
+   ICON WRAPPER
+======================================== */
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  flex: 0 0 28px;
+
+  color: $color-burgundy;
+}
+
+.icon {
+  display: block;
+
+  width: 20px;
+  height: 20px;
+
+  stroke: currentColor;
+}
+
+/* ========================================
+   ANSWER
+======================================== */
+
+.answer {
+  width: 100%;
+  min-width: 0;
+
+  padding: 0 2.5rem 1.25rem 0;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.answerText {
+  max-width: 480px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  font-weight: 400;
+
+  line-height: 1.65;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   OPEN ITEM
+======================================== */
+
+.itemOpen {
+  .question {
+    padding-bottom: 0.75rem;
+  }
+
+  .questionText {
+    color: $color-burgundy;
+  }
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-block: 4rem;
+  }
+
+  .title {
+    font-size: 3.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .question {
+    min-height: 66px;
+  }
+
+  .questionText {
+    font-size: 0.95rem;
+  }
+
+  .answerText {
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   768px - 1199px
+======================================== */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    padding: 2.75rem 1.5rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 3vw, 2.7rem);
+  }
+
+  .question {
+    min-height: 56px;
+    gap: 0.75rem;
+  }
+
+  .questionText {
+    font-size: 0.85rem;
+  }
+
+  .answerText {
+    font-size: 0.8rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .container {
+    padding: 2.75rem 0;
+  }
+
+  /* TITLE */
+
+  .title {
+    margin-bottom: 1.5rem;
+
+    font-size: clamp(2.4rem, 8vw, 3rem);
+  }
+
+  /* QUESTION */
+
+  .question {
+    min-height: 58px;
+
+    gap: 0.75rem;
+
+    padding-block: 1rem;
+  }
+
+  .questionText {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  /* ICON */
+
+  .iconWrapper {
+    width: 24px;
+    height: 24px;
+
+    flex-basis: 24px;
+  }
+
+  .icon {
+    width: 19px;
+    height: 19px;
+  }
+
+  /* ANSWER */
+
+  .answer {
+    padding: 0 1.5rem 1.25rem 0;
+  }
+
+  .answerText {
+    max-width: 100%;
+
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    padding-block: 2.25rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .questionText {
+    font-size: 0.8rem;
+  }
+
+  .answerText {
+    font-size: 0.75rem;
+  }
+}
