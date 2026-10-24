@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,6 +13,14 @@ type ContactFormData = {
   message: string;
   privacy: boolean;
   marketing: boolean;
+  website: string;
+};
+
+type SubmitStatus = "idle" | "success" | "error";
+
+type ContactApiResponse = {
+  success: boolean;
+  message?: string;
 };
 
 const initialFormData: ContactFormData = {
@@ -22,20 +30,30 @@ const initialFormData: ContactFormData = {
   message: "",
   privacy: false,
   marketing: false,
+  website: "",
 };
 
 export default function ContactHero() {
+  // ========================================
+  // ESTADOS DEL FORMULARIO
+  // ========================================
+
   const [formData, setFormData] =
     useState<ContactFormData>(initialFormData);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [formMessage, setFormMessage] = useState("");
+  const [submitStatus, setSubmitStatus] =
+    useState<SubmitStatus>("idle");
+
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  // ========================================
+  // ACTUALIZACIÓN DE CAMPOS
+  // ========================================
 
   const handleChange = (
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = event.target;
 
@@ -48,7 +66,16 @@ export default function ContactHero() {
       ...previous,
       [name]: fieldValue,
     }));
+
+    if (submitStatus !== "idle") {
+      setSubmitStatus("idle");
+      setSubmitMessage("");
+    }
   };
+
+  // ========================================
+  // ENVÍO DEL FORMULARIO
+  // ========================================
 
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
@@ -57,20 +84,83 @@ export default function ContactHero() {
 
     if (isSubmitting) return;
 
-    // El envío real se implementará cuando
-    // desarrollemos la API de contacto.
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setSubmitMessage("");
 
-    setFormMessage(
-      "El formulario está preparado. El envío de mensajes estará disponible próximamente."
-    );
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+          privacyAccepted: formData.privacy,
+          marketingAccepted: formData.marketing,
+
+          // Protección antispam: honeypot
+          website: formData.website,
+        }),
+      });
+
+      const result: ContactApiResponse =
+        await response.json();
+
+      if (!response.ok || !result.success) {
+        setSubmitStatus("error");
+
+        setSubmitMessage(
+          result.message ||
+            "No hemos podido enviar tu mensaje. Inténtalo de nuevo."
+        );
+
+        return;
+      }
+
+      // ========================================
+      // ENVÍO CORRECTO
+      // ========================================
+
+      setSubmitStatus("success");
+
+      setSubmitMessage(
+        result.message ||
+          "Tu mensaje se ha enviado correctamente."
+      );
+
+      setFormData({ ...initialFormData });
+    } catch (error) {
+      console.error(
+        "[CONTACT] Error al enviar el formulario:",
+        error
+      );
+
+      setSubmitStatus("error");
+
+      setSubmitMessage(
+        "No hemos podido conectar con el servidor. Inténtalo de nuevo."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  // ========================================
+  // RENDERIZADO
+  // ========================================
 
   return (
     <section
       className={styles.hero}
       aria-labelledby="contact-hero-title"
     >
-      {/* BACKGROUND */}
+      {/* ========================================
+          BACKGROUND
+      ======================================== */}
 
       <div
         className={styles.background}
@@ -101,7 +191,9 @@ export default function ContactHero() {
       />
 
       <div className={styles.container}>
-        {/* INTRODUCTION */}
+        {/* ========================================
+            INTRODUCCIÓN
+        ======================================== */}
 
         <div className={styles.intro}>
           <h1
@@ -132,14 +224,43 @@ export default function ContactHero() {
           />
         </div>
 
-        {/* CONTACT FORM */}
+        {/* ========================================
+            FORMULARIO
+        ======================================== */}
 
         <div className={styles.formWrapper}>
           <form
             className={styles.form}
             onSubmit={handleSubmit}
           >
-            {/* NAME */}
+            {/* ========================================
+                HONEYPOT ANTISPAM
+            ======================================== */}
+
+            <div
+              className={styles.honeypot}
+              aria-hidden="true"
+            >
+              <label htmlFor="contact-website">
+                Página web
+              </label>
+
+  <input
+    id="contact-company-fax"
+    name="website"
+    type="text"
+    value={formData.website}
+    onChange={handleChange}
+    tabIndex={-1}
+    autoComplete="new-password"
+    data-lpignore="true"
+    data-1p-ignore="true"
+  />
+            </div>
+
+            {/* ========================================
+                NOMBRE
+            ======================================== */}
 
             <div className={styles.field}>
               <label
@@ -158,12 +279,16 @@ export default function ContactHero() {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                minLength={2}
                 maxLength={120}
+                disabled={isSubmitting}
                 className={styles.input}
               />
             </div>
 
-            {/* PHONE + EMAIL */}
+            {/* ========================================
+                TELÉFONO + EMAIL
+            ======================================== */}
 
             <div className={styles.fieldsRow}>
               <div className={styles.field}>
@@ -183,6 +308,7 @@ export default function ContactHero() {
                   value={formData.phone}
                   onChange={handleChange}
                   maxLength={25}
+                  disabled={isSubmitting}
                   className={styles.input}
                 />
               </div>
@@ -205,12 +331,15 @@ export default function ContactHero() {
                   onChange={handleChange}
                   required
                   maxLength={254}
+                  disabled={isSubmitting}
                   className={styles.input}
                 />
               </div>
             </div>
 
-            {/* MESSAGE */}
+            {/* ========================================
+                MENSAJE
+            ======================================== */}
 
             <div className={styles.field}>
               <label
@@ -230,19 +359,25 @@ export default function ContactHero() {
                 minLength={10}
                 maxLength={5000}
                 rows={5}
+                disabled={isSubmitting}
                 className={styles.textarea}
               />
             </div>
 
-            {/* CONSENTS */}
+            {/* ========================================
+                CONSENTIMIENTOS
+            ======================================== */}
 
             <div className={styles.consents}>
+              {/* COMUNICACIONES COMERCIALES */}
+
               <label className={styles.checkboxLabel}>
                 <input
                   type="checkbox"
                   name="marketing"
                   checked={formData.marketing}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                   className={styles.checkbox}
                 />
 
@@ -253,43 +388,49 @@ export default function ContactHero() {
                 </span>
               </label>
 
-<label className={styles.checkboxLabel}>
-  <input
-    type="checkbox"
-    name="privacy"
-    checked={formData.privacy}
-    onChange={handleChange}
-    required
-    className={styles.checkbox}
-  />
+              {/* PRIVACIDAD */}
 
-  <span>
-    Autorizo la recogida y el tratamiento de mis datos
-    personales facilitados en el presente formulario
-    para los fines descritos en el{" "}
-    <Link
-      href="/aviso-legal"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles.legalLink}
-    >
-      aviso legal
-    </Link>{" "}
-    y la{" "}
-    <Link
-      href="/politica-de-privacidad"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles.legalLink}
-    >
-      política de privacidad
-    </Link>
-    .
-  </span>
-</label>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  name="privacy"
+                  checked={formData.privacy}
+                  onChange={handleChange}
+                  required
+                  disabled={isSubmitting}
+                  className={styles.checkbox}
+                />
+
+                <span>
+                  Autorizo la recogida y el tratamiento de
+                  mis datos personales facilitados en el
+                  presente formulario para los fines
+                  descritos en el{" "}
+                  <Link
+                    href="/aviso-legal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.legalLink}
+                  >
+                    aviso legal
+                  </Link>{" "}
+                  y la{" "}
+                  <Link
+                    href="/politica-de-privacidad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.legalLink}
+                  >
+                    política de privacidad
+                  </Link>
+                  .
+                </span>
+              </label>
             </div>
 
-            {/* SUBMIT */}
+            {/* ========================================
+                BOTÓN DE ENVÍO
+            ======================================== */}
 
             <button
               type="submit"
@@ -298,8 +439,8 @@ export default function ContactHero() {
             >
               <span>
                 {isSubmitting
-                  ? "ENVIANDO..."
-                  : "ENVIAR MENSAJE"}
+                  ? "Enviando mensaje..."
+                  : "Enviar mensaje"}
               </span>
 
               <svg
@@ -318,15 +459,25 @@ export default function ContactHero() {
               </svg>
             </button>
 
-            {/* FORM FEEDBACK */}
+            {/* ========================================
+                RESULTADO DEL ENVÍO
+            ======================================== */}
 
-            {formMessage && (
+            {submitMessage && (
               <p
-                className={styles.formMessage}
-                role="status"
+                className={`${styles.formFeedback} ${
+                  submitStatus === "success"
+                    ? styles.formFeedbackSuccess
+                    : styles.formFeedbackError
+                }`}
+                role={
+                  submitStatus === "error"
+                    ? "alert"
+                    : "status"
+                }
                 aria-live="polite"
               >
-                {formMessage}
+                {submitMessage}
               </p>
             )}
           </form>
