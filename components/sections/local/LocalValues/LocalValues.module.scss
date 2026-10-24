@@ -1,0 +1,449 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   LOCAL VALUES
+======================================== */
+
+.values {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  align-items: center;
+
+  gap: clamp(1rem, 2vw, 2rem);
+
+  padding-block: 2rem;
+}
+
+/* ========================================
+   VALUES LIST
+======================================== */
+
+.valuesList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  align-items: stretch;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   VALUE ITEM
+======================================== */
+
+.value {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+
+  padding: 0.5rem 1.25rem;
+
+  text-align: center;
+
+  &:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 10%;
+    right: 0;
+
+    width: 1px;
+    height: 80%;
+
+    background-color: rgba(153, 13, 37, 0.55);
+  }
+}
+
+/* ========================================
+   ICON
+======================================== */
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  margin-bottom: 0.65rem;
+}
+
+.icon {
+  width: 38px;
+  height: 38px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  max-width: 160px;
+
+  margin: 0 0 0.5rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  letter-spacing: 0.1px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 210px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 400;
+
+  line-height: 1.4;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   CORPORATE MASCOT
+======================================== */
+
+.mascot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   MASCOT IMAGE
+======================================== */
+
+.mascotImage {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: clamp(90px, 9vw, 140px);
+  aspect-ratio: 0.75;
+}
+
+.image {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ========================================
+   DECORATIVE TEXT
+======================================== */
+
+.decorativeText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex: 0 0 auto;
+
+  font-family: $font-heading;
+  font-size: clamp(1.1rem, 1.5vw, 1.7rem);
+  font-style: italic;
+
+  line-height: 1.1;
+  text-align: center;
+
+  color: $color-burgundy;
+
+  transform: rotate(-8deg);
+}
+
+/* ========================================
+   DECORATIVE LINE
+======================================== */
+
+.decorativeLine {
+  display: block;
+
+  width: 65px;
+  height: 2px;
+
+  margin-top: 0.5rem;
+
+  border-radius: 50%;
+
+  background-color: $color-burgundy;
+
+  transform: rotate(-12deg);
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-block: 2.5rem;
+  }
+
+  .value {
+    padding-inline: 1.5rem;
+  }
+
+  .iconWrapper {
+    width: 54px;
+    height: 54px;
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .mascotImage {
+    width: 140px;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .container {
+    grid-template-columns: minmax(0, 3.5fr) minmax(0, 1fr);
+
+    gap: 1rem;
+
+    padding-block: 1.75rem;
+  }
+
+  .value {
+    padding-inline: 0.75rem;
+  }
+
+  .icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .title {
+    font-size: 0.7rem;
+  }
+
+  .description {
+    font-size: 0.7rem;
+  }
+
+  .mascotImage {
+    width: 90px;
+  }
+
+  .decorativeText {
+    display: none;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 0;
+
+    padding-block: 1.75rem;
+  }
+
+  /*
+   * Flatten the values wrapper so the three
+   * values and mascot share the same grid.
+   */
+
+  .valuesList {
+    display: contents;
+  }
+
+  /* VALUE ITEM */
+
+  .value {
+    min-height: 145px;
+
+    padding: 1rem 0.75rem;
+
+    justify-content: center;
+  }
+
+  /*
+   * Remove desktop separators.
+   */
+
+  .value:not(:last-child)::after {
+    display: none;
+  }
+
+  /*
+   * Vertical separator between columns.
+   */
+
+  .value:nth-child(odd)::after {
+    content: "";
+
+    display: block;
+
+    position: absolute;
+
+    top: 15%;
+    right: 0;
+
+    width: 1px;
+    height: 70%;
+
+    background-color: rgba(153, 13, 37, 0.45);
+  }
+
+  /* ICON */
+
+  .iconWrapper {
+    width: 42px;
+    height: 42px;
+
+    margin-bottom: 0.5rem;
+  }
+
+  .icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* TITLE */
+
+  .title {
+    max-width: 140px;
+
+    margin-bottom: 0.35rem;
+
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 170px;
+
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
+  /* MASCOT */
+
+  .mascot {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 145px;
+
+    padding: 0.75rem;
+  }
+
+  .mascotImage {
+    width: 90px;
+    aspect-ratio: 0.75;
+  }
+
+  .decorativeText {
+    display: none;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    padding-block: 1.25rem;
+  }
+
+  .value {
+    min-height: 135px;
+
+    padding: 0.75rem 0.5rem;
+  }
+
+  .iconWrapper {
+    width: 38px;
+    height: 38px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .title {
+    font-size: 0.6rem;
+  }
+
+  .description {
+    font-size: 0.6rem;
+  }
+
+  .mascotImage {
+    width: 80px;
+  }
+}

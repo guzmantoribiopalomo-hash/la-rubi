@@ -1,0 +1,477 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   LOCAL EXPERIENCE
+======================================== */
+
+.experience {
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(0, 2.15fr);
+
+  align-items: center;
+
+  gap: clamp(2rem, 3vw, 4rem);
+
+  padding-block: 3rem;
+
+  min-width: 0;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.25rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2rem, 2.7vw, 3.5rem);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -1px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 340px;
+
+  margin: 0 0 1.5rem;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 0.7rem 1.4rem;
+
+  border: 2px solid $color-burgundy;
+  border-radius: 50px;
+
+  background-color: transparent;
+  color: $color-burgundy;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    background-color: $color-burgundy;
+    color: $color-white;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-burgundy;
+    outline-offset: 4px;
+  }
+}
+
+/* ========================================
+   DESKTOP BUTTON
+======================================== */
+
+.desktopButton {
+  display: inline-flex;
+}
+
+/* ========================================
+   DESKTOP GALLERY
+======================================== */
+
+.desktopGallery {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    repeat(2, minmax(0, 1fr));
+
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+
+  gap: 0.75rem;
+
+  width: 100%;
+  min-width: 0;
+
+  aspect-ratio: 2 / 1;
+}
+
+/* ========================================
+   GALLERY ITEM
+======================================== */
+
+.galleryItem {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  border-radius: 6px;
+
+  background-color: #e8ded0;
+}
+
+/* ========================================
+   FEATURED IMAGE
+======================================== */
+
+.featuredImage {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* ========================================
+   GALLERY IMAGE
+======================================== */
+
+.image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1);
+
+  transition: transform 500ms ease-in-out;
+}
+
+/* ========================================
+   IMAGE HOVER - DESKTOP
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .galleryItem:hover .image {
+    transform: scale(1.06);
+  }
+}
+
+/* ========================================
+   MOBILE GALLERY
+======================================== */
+
+.mobileGallery {
+  display: none;
+}
+
+/* ========================================
+   SWIPER
+======================================== */
+
+.swiper {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  :global(.swiper-wrapper) {
+    display: flex;
+    align-items: stretch;
+  }
+
+  :global(.swiper-slide) {
+    height: auto;
+    min-width: 0;
+
+    box-sizing: border-box;
+  }
+
+  /* PAGINATION */
+
+  :global(.swiper-pagination) {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.4rem;
+
+    margin-top: 1rem;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    width: 7px;
+    height: 7px;
+
+    margin: 0 !important;
+
+    background-color: $color-burgundy;
+    opacity: 0.3;
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    opacity: 1;
+
+    transform: scale(1.2);
+  }
+}
+
+/* ========================================
+   MOBILE IMAGE
+======================================== */
+
+.mobileImageWrapper {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1.25;
+
+  overflow: hidden;
+
+  border-radius: 6px;
+
+  background-color: #e8ded0;
+}
+
+/* ========================================
+   MOBILE BUTTON
+======================================== */
+
+.mobileButton {
+  display: none;
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-block: 4rem;
+  }
+
+  .desktopGallery {
+    gap: 1rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .container {
+    grid-template-columns:
+      minmax(0, 0.9fr)
+      minmax(0, 2.1fr);
+
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .desktopGallery {
+    gap: 0.5rem;
+
+    aspect-ratio: 1.7 / 1;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 1.5rem;
+
+    padding-block: 2rem;
+  }
+
+  /* CONTENT */
+
+  .content {
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+
+    font-size: clamp(2rem, 7vw, 2.8rem);
+  }
+
+  .description {
+    max-width: 100%;
+
+    margin-bottom: 0;
+
+    font-size: 0.8rem;
+  }
+
+  /* DESKTOP ELEMENTS */
+
+  .desktopGallery,
+  .desktopButton {
+    display: none;
+  }
+
+  /* MOBILE GALLERY */
+
+  .mobileGallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+  }
+
+  .swiper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mobileImageWrapper {
+    aspect-ratio: 1.2;
+  }
+
+  /* MOBILE BUTTON */
+
+  .mobileButton {
+    display: inline-flex;
+
+    margin-top: 1.5rem;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+
+  .mobileImageWrapper {
+    aspect-ratio: 1.1;
+  }
+
+  .mobileButton {
+    font-size: 0.65rem;
+  }
+}
