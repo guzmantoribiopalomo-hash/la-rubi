@@ -1,0 +1,548 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   LOCAL HERO
+======================================== */
+
+.hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 500px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -2;
+
+  overflow: hidden;
+}
+
+/* ========================================
+   BACKGROUND IMAGE
+======================================== */
+
+.image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* ========================================
+   BACKGROUND OVERLAY
+======================================== */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    rgba(250, 247, 223, 0.98) 0%,
+    rgba(250, 247, 223, 0.95) 18%,
+    rgba(250, 247, 223, 0.78) 30%,
+    rgba(250, 247, 223, 0.35) 43%,
+    rgba(250, 247, 223, 0.05) 60%,
+    transparent 75%
+  );
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-width: 0;
+
+  padding-block: 5rem;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  width: 100%;
+  max-width: 470px;
+
+  min-width: 0;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.25rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2.8rem, 4vw, 5rem);
+  font-weight: 400;
+
+  line-height: 0.98;
+  letter-spacing: -1.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 420px;
+
+  margin: 0 0 1.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 0.75rem 1.5rem;
+
+  border: 2px solid $color-burgundy;
+  border-radius: 50px;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-burgundy;
+    outline-offset: 4px;
+  }
+}
+
+/* ========================================
+   PRIMARY BUTTON
+======================================== */
+
+.primaryButton {
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-burgundy;
+  }
+}
+
+/* ========================================
+   SECONDARY BUTTON
+======================================== */
+
+.secondaryButton {
+  background-color: transparent;
+  color: $color-burgundy;
+
+  &:hover {
+    background-color: $color-burgundy;
+    color: $color-white;
+  }
+}
+
+/* ========================================
+   DECORATIVE TEXT
+======================================== */
+
+.decorativeText {
+  position: absolute;
+
+  right: 1rem;
+  bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: $font-heading;
+  font-size: clamp(1.3rem, 1.8vw, 2rem);
+  font-style: italic;
+
+  line-height: 1.15;
+  text-align: center;
+
+  color: $color-white;
+
+  transform: rotate(-8deg);
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* ========================================
+   DECORATIVE LINE
+======================================== */
+
+.decorativeLine {
+  display: block;
+
+  width: 100px;
+  height: 2px;
+
+  margin-top: 0.75rem;
+
+  border-radius: 50%;
+
+  background-color: $color-white;
+
+  transform: rotate(-12deg);
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 550px;
+  }
+
+  .container {
+    padding-block: 6rem;
+  }
+
+  .content {
+    max-width: 500px;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 4vw, 5.5rem);
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .decorativeText {
+    right: 2rem;
+    bottom: 3.5rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 480px;
+  }
+
+  .container {
+    padding-block: 4rem;
+  }
+
+  .content {
+    max-width: 420px;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 5vw, 4rem);
+  }
+
+  .description {
+    max-width: 380px;
+    font-size: 0.85rem;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(250, 247, 223, 0.98) 0%,
+      rgba(250, 247, 223, 0.9) 30%,
+      rgba(250, 247, 223, 0.45) 55%,
+      transparent 85%
+    );
+  }
+
+  .decorativeText {
+    right: 1.5rem;
+    bottom: 2rem;
+
+    font-size: 1.3rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 600px;
+
+    align-items: flex-start;
+
+    background-color: $color-dark;
+  }
+
+  /* BACKGROUND */
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* OVERLAY */
+
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 12, 8, 0.82) 0%,
+      rgba(20, 12, 8, 0.65) 35%,
+      rgba(20, 12, 8, 0.35) 65%,
+      rgba(20, 12, 8, 0.2) 100%
+    );
+  }
+
+  /* CONTAINER */
+
+  .container {
+    align-items: flex-start;
+
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* CONTENT */
+
+  .content {
+    max-width: 100%;
+  }
+
+  /* EYEBROW */
+
+  .eyebrow {
+    margin-bottom: 0.75rem;
+
+    font-size: 0.7rem;
+
+    color: $color-white;
+  }
+
+  /* TITLE */
+
+  .title {
+    margin-bottom: 1.25rem;
+
+    font-size: clamp(2.8rem, 10vw, 4rem);
+
+    line-height: 0.98;
+    letter-spacing: -1px;
+
+    color: $color-white;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 340px;
+
+    margin-bottom: 1.75rem;
+
+    font-size: 0.85rem;
+    line-height: 1.55;
+
+    color: $color-white;
+  }
+
+  /* ACTIONS */
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0.75rem;
+
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* BUTTONS */
+
+  .button {
+    width: 100%;
+
+    min-height: 44px;
+
+    font-size: 0.7rem;
+  }
+
+  .primaryButton {
+    background-color: $color-burgundy;
+    color: $color-white;
+
+    border-color: $color-burgundy;
+  }
+
+  .secondaryButton {
+    background-color: $color-cream;
+    color: $color-burgundy;
+
+    border-color: $color-cream;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-burgundy;
+    }
+  }
+
+  /* DECORATIVE TEXT */
+
+  .decorativeText {
+    display: none;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 10vw, 3.2rem);
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .actions {
+    max-width: 100%;
+  }
+
+  .button {
+    font-size: 0.65rem;
+  }
+}
