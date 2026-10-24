@@ -1,0 +1,300 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 660px;
+  overflow: hidden;
+  background-color: #faf7df;
+  isolation: isolate;
+}
+
+// ========================================
+// BACKGROUND
+// ========================================
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  // El degradado se aplica por CSS,
+  // nunca sobre la imagen original.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: linear-gradient(
+      90deg,
+      rgba(250, 247, 223, 0.98) 0%,
+      rgba(250, 247, 223, 0.94) 24%,
+      rgba(250, 247, 223, 0.72) 39%,
+      rgba(250, 247, 223, 0.15) 58%,
+      transparent 75%
+    );
+
+    pointer-events: none;
+  }
+}
+
+.desktopImage,
+.mobileImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+// ========================================
+// CONTAINER
+// ========================================
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+// ========================================
+// CONTENT
+// ========================================
+
+.content {
+  max-width: 550px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  color: $color-burgundy;
+
+  font-family: $font-primary;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+
+  color: $color-burgundy;
+
+  font-family: $font-heading;
+  font-size: clamp(52px, 5vw, 76px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -1.8px;
+}
+
+.description {
+  max-width: 460px;
+  margin: 28px 0 32px;
+
+  color: $color-dark;
+
+  font-family: $font-primary;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+// ========================================
+// CTA
+// ========================================
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  min-height: 52px;
+  padding: 14px 28px;
+
+  border: 2px solid $color-burgundy;
+  border-radius: 50px;
+
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  font-family: $font-primary;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+
+  &:hover {
+    background-color: #870d24;
+    border-color: #870d24;
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-burgundy;
+    outline-offset: 4px;
+  }
+
+  span {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+  }
+}
+
+// ========================================
+// TABLET
+// ========================================
+
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 580px;
+  }
+
+  .background {
+    &::after {
+      background: linear-gradient(
+        90deg,
+        rgba(250, 247, 223, 0.98) 0%,
+        rgba(250, 247, 223, 0.9) 35%,
+        rgba(250, 247, 223, 0.35) 65%,
+        transparent 100%
+      );
+    }
+  }
+
+  .container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .content {
+    max-width: 470px;
+  }
+
+  .title {
+    font-size: clamp(46px, 5vw, 64px);
+  }
+
+  .description {
+    max-width: 420px;
+    font-size: 15px;
+  }
+}
+
+// ========================================
+// MOBILE
+// ========================================
+
+@media (max-width: 767px) {
+  .hero {
+    display: block;
+    min-height: 0;
+    background-color: #faf7df;
+  }
+
+  .background {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+
+    display: block;
+    width: 100%;
+    height: 330px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+    object-fit: cover;
+    object-position: center 72%;
+  }
+
+  .container {
+    padding-top: 42px;
+    padding-bottom: 38px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .title {
+    max-width: 420px;
+    font-size: clamp(40px, 10vw, 54px);
+    line-height: 1.08;
+    letter-spacing: -1px;
+  }
+
+  .description {
+    max-width: 380px;
+    margin: 20px 0 24px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .cta {
+    min-height: 46px;
+    padding: 12px 22px;
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  // Colocamos primero el contenido y
+  // después la fotografía.
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ========================================
+// SMALL MOBILE
+// ========================================
+
+@media (max-width: 375px) {
+  .title {
+    font-size: 38px;
+  }
+
+  .background {
+    height: 280px;
+  }
+
+  .container {
+    padding-top: 36px;
+    padding-bottom: 32px;
+  }
+}
