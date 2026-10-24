@@ -1,0 +1,407 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   CONTACT VALUES
+======================================== */
+
+.values {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  overflow: hidden;
+
+  border-radius: 0 0 14px 14px;
+
+  background-color: $color-burgundy;
+  color: $color-white;
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background {
+  position: absolute;
+  z-index: -2;
+
+  inset: 0;
+
+  overflow: hidden;
+}
+
+.backgroundImage {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: none;
+  transition: none;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* ========================================
+   OVERLAY
+======================================== */
+
+.overlay {
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  background-color: rgba(77, 22, 12, 0.72);
+
+  pointer-events: none;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  min-width: 0;
+
+  padding-block: clamp(2.25rem, 3.5vw, 3.5rem);
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  align-items: stretch;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   VALUE ITEM
+======================================== */
+
+.item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+
+  padding: 0.5rem clamp(1rem, 2vw, 2rem);
+
+  text-align: center;
+
+  &:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 12%;
+    right: 0;
+
+    width: 1px;
+    height: 76%;
+
+    background-color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+/* ========================================
+   ICON
+======================================== */
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 56px;
+  height: 56px;
+
+  margin-bottom: 0.65rem;
+
+  color: $color-white;
+
+  svg {
+    display: block;
+
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  max-width: 220px;
+
+  margin: 0 0 0.5rem;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+
+  color: $color-white;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 225px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.8rem;
+  font-weight: 400;
+
+  line-height: 1.45;
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-block: 3.5rem;
+  }
+
+  .item {
+    padding-inline: 2.5rem;
+  }
+
+  .iconWrapper {
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 0.75rem;
+
+    svg {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   768px - 1199px
+======================================== */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    padding-block: 2.5rem;
+  }
+
+  .item {
+    padding-inline: 1rem;
+  }
+
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 0.6rem;
+
+    svg {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .values {
+    border-radius: 0 0 10px 10px;
+  }
+
+  /* BACKGROUND */
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .backgroundImage {
+    object-position: center;
+  }
+
+  /* OVERLAY */
+
+  .overlay {
+    background-color: rgba(77, 22, 12, 0.76);
+  }
+
+  /* CONTAINER */
+
+  .container {
+    padding-block: 2.5rem;
+  }
+
+  /* GRID */
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    row-gap: 2rem;
+  }
+
+  /* ITEM */
+
+  .item {
+    padding: 0 0.85rem;
+  }
+
+  /* Remove desktop separators */
+
+  .item:not(:last-child)::after {
+    display: none;
+  }
+
+  /* Vertical separators between columns */
+
+  .item:nth-child(odd)::after {
+    content: "";
+
+    display: block;
+
+    position: absolute;
+
+    top: 10%;
+    right: 0;
+
+    width: 1px;
+    height: 80%;
+
+    background-color: rgba(255, 255, 255, 0.45);
+  }
+
+  /* ICON */
+
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 0.65rem;
+
+    svg {
+      width: 34px;
+      height: 34px;
+    }
+  }
+
+  /* TITLE */
+
+  .title {
+    max-width: 170px;
+
+    margin-bottom: 0.4rem;
+
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 175px;
+
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    padding-block: 2rem;
+  }
+
+  .grid {
+    row-gap: 1.75rem;
+  }
+
+  .item {
+    padding-inline: 0.5rem;
+  }
+
+  .iconWrapper {
+    width: 42px;
+    height: 42px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .title {
+    font-size: 0.72rem;
+  }
+
+  .description {
+    font-size: 0.68rem;
+  }
+}

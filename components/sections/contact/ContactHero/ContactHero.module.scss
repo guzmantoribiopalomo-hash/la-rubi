@@ -1,0 +1,702 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   CONTACT HERO
+======================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 540px;
+
+  overflow: hidden;
+
+  background-color: $color-burgundy;
+  color: $color-cream;
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background {
+  position: absolute;
+  z-index: -2;
+
+  inset: 0;
+
+  overflow: hidden;
+}
+
+.backgroundImage {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  // Sin zoom ni animaciones en los hero
+  transform: none;
+  transition: none;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* ========================================
+   OVERLAY
+======================================== */
+
+.overlay {
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(35, 15, 9, 0.76) 0%,
+    rgba(35, 15, 9, 0.66) 48%,
+    rgba(35, 15, 9, 0.7) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+
+  gap: clamp(3rem, 5vw, 6rem);
+
+  width: 100%;
+  min-width: 0;
+
+  padding-block: clamp(4rem, 6vw, 6rem);
+}
+
+/* ========================================
+   INTRODUCTION
+======================================== */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+  min-width: 0;
+  max-width: 510px;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.5rem;
+
+  font-family: $font-heading;
+  font-size: clamp(3.3rem, 4.8vw, 5.5rem);
+  font-weight: 400;
+
+  line-height: 0.98;
+  letter-spacing: -1.5px;
+
+  color: $color-cream;
+
+  em {
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 440px;
+
+  margin: 0 0 1.15rem;
+
+  font-family: $font-primary;
+  font-size: 0.95rem;
+  font-weight: 400;
+
+  line-height: 1.65;
+
+  color: $color-cream;
+
+  &:last-of-type {
+    margin-bottom: 1.75rem;
+  }
+}
+
+/* ========================================
+   DECORATIVE LINE
+======================================== */
+
+.decorativeLine {
+  display: block;
+
+  width: 48px;
+  height: 2px;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   FORM WRAPPER
+======================================== */
+
+.formWrapper {
+  width: 100%;
+  min-width: 0;
+  max-width: 560px;
+
+  justify-self: end;
+}
+
+/* ========================================
+   FORM
+======================================== */
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.85rem;
+
+  width: 100%;
+}
+
+/* ========================================
+   FORM FIELD
+======================================== */
+
+.field {
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   FIELDS ROW
+======================================== */
+
+.fieldsRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 0.75rem;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.input,
+.textarea {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 0.9rem 1rem;
+
+  border: 1px solid rgba(250, 247, 223, 0.75);
+  border-radius: 5px;
+
+  outline: none;
+
+  background-color: $color-cream;
+  color: $color-dark;
+
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  font-weight: 400;
+
+  line-height: 1.4;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: rgba(70, 48, 40, 0.65);
+    opacity: 1;
+  }
+
+  &:hover {
+    border-color: $color-white;
+  }
+
+  &:focus-visible {
+    border-color: $color-burgundy;
+
+    box-shadow: 0 0 0 3px rgba(250, 247, 223, 0.45);
+  }
+}
+
+.input {
+  min-height: 48px;
+}
+
+.textarea {
+  min-height: 145px;
+
+  resize: vertical;
+}
+
+/* ========================================
+   CONSENTS
+======================================== */
+
+.consents {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.8rem;
+
+  margin-top: 0.25rem;
+}
+
+/* ========================================
+   CHECKBOX LABEL
+======================================== */
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.75rem;
+
+  width: 100%;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 400;
+
+  line-height: 1.55;
+
+  color: $color-cream;
+
+  cursor: pointer;
+}
+
+/* ========================================
+   CHECKBOX
+======================================== */
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+
+  flex: 0 0 17px;
+
+  margin: 0.1rem 0 0;
+
+  accent-color: $color-burgundy;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid $color-cream;
+    outline-offset: 3px;
+  }
+}
+
+/* ========================================
+   LEGAL LINK
+======================================== */
+
+.legalLink {
+  color: $color-cream;
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-cream;
+    outline-offset: 3px;
+  }
+}
+
+/* ========================================
+   SUBMIT BUTTON
+======================================== */
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  align-self: flex-start;
+
+  gap: 0.75rem;
+
+  min-height: 48px;
+
+  margin-top: 0.65rem;
+  padding: 0.85rem 2rem;
+
+  border: 2px solid $color-cream;
+  border-radius: 50px;
+
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  font-family: $font-primary;
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  svg {
+    flex-shrink: 0;
+
+    transition: transform 0.2s ease;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $color-cream;
+    color: $color-burgundy;
+
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-cream;
+    outline-offset: 4px;
+  }
+}
+
+/* ========================================
+   FORM MESSAGE
+======================================== */
+
+.formMessage {
+  margin: 0.5rem 0 0;
+
+  font-family: $font-primary;
+  font-size: 0.8rem;
+
+  line-height: 1.5;
+
+  color: $color-cream;
+}
+
+/* ========================================
+   SCREEN READER ONLY
+======================================== */
+
+.srOnly {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+
+  border: 0;
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 580px;
+  }
+
+  .container {
+    gap: 6rem;
+    padding-block: 5.5rem;
+  }
+
+  .title {
+    font-size: 5.3rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .formWrapper {
+    max-width: 580px;
+  }
+
+  .input {
+    min-height: 50px;
+  }
+
+  .textarea {
+    min-height: 155px;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1199px
+======================================== */
+
+@media (max-width: 1199px) {
+  .container {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+
+    gap: 2.5rem;
+
+    padding-block: 4rem;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .form {
+    gap: 0.75rem;
+  }
+
+  .input {
+    min-height: 46px;
+  }
+
+  .textarea {
+    min-height: 135px;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 0;
+
+    align-items: stretch;
+  }
+
+  /* BACKGROUND */
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .backgroundImage {
+    object-position: center;
+  }
+
+  /* OVERLAY */
+
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(35, 15, 9, 0.8) 0%,
+      rgba(35, 15, 9, 0.72) 45%,
+      rgba(35, 15, 9, 0.85) 100%
+    );
+  }
+
+  /* CONTAINER */
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 2rem;
+
+    padding-block: 3rem 3.5rem;
+  }
+
+  /* INTRO */
+
+  .intro {
+    max-width: 100%;
+  }
+
+  /* TITLE */
+
+  .title {
+    margin-bottom: 1.25rem;
+
+    font-size: clamp(2.7rem, 10vw, 3.8rem);
+    line-height: 1.02;
+    letter-spacing: -1px;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 100%;
+
+    margin-bottom: 1rem;
+
+    font-size: 0.85rem;
+    line-height: 1.6;
+
+    &:last-of-type {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  /* DECORATION */
+
+  .decorativeLine {
+    width: 42px;
+  }
+
+  /* FORM */
+
+  .formWrapper {
+    max-width: 100%;
+  }
+
+  .form {
+    gap: 0.75rem;
+  }
+
+  /* FIELDS */
+
+  .fieldsRow {
+    gap: 0.6rem;
+  }
+
+  /* INPUTS */
+
+  .input,
+  .textarea {
+    padding: 0.85rem 0.9rem;
+
+    font-size: 0.8rem;
+
+    border-radius: 4px;
+  }
+
+  .input {
+    min-height: 46px;
+  }
+
+  .textarea {
+    min-height: 130px;
+  }
+
+  /* CONSENTS */
+
+  .consents {
+    gap: 0.85rem;
+    margin-top: 0.35rem;
+  }
+
+  .checkboxLabel {
+    gap: 0.65rem;
+
+    font-size: 0.7rem;
+    line-height: 1.5;
+  }
+
+  /* BUTTON */
+
+  .submitButton {
+    align-self: stretch;
+
+    width: 100%;
+    min-height: 48px;
+
+    margin-top: 0.65rem;
+
+    font-size: 0.75rem;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    gap: 1.75rem;
+    padding-block: 2.5rem 3rem;
+  }
+
+  .title {
+    font-size: 2.55rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .fieldsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .checkboxLabel {
+    font-size: 0.68rem;
+  }
+}
