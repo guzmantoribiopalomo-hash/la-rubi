@@ -1,0 +1,431 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   FRANCHISE REQUIREMENTS
+======================================== */
+
+.requirements {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+  align-items: center;
+
+  gap: clamp(1.5rem, 2.5vw, 3rem);
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 3.5rem 2.5rem 3.5rem 0;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.5rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2.2rem, 2.5vw, 3.1rem);
+  font-weight: 400;
+
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   REQUIREMENTS LIST
+======================================== */
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* ========================================
+   REQUIREMENT ITEM
+======================================== */
+
+.item {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 0.75rem;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   CHECK ICON
+======================================== */
+
+.check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 23px;
+  height: 23px;
+
+  flex: 0 0 23px;
+
+  border-radius: 50%;
+
+  background-color: $color-burgundy;
+  color: $color-cream;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* ========================================
+   REQUIREMENT TEXT
+======================================== */
+
+.itemText {
+  padding-top: 0.1rem;
+
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   VISUAL
+======================================== */
+
+.visual {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 250px;
+}
+
+.imageWrapper {
+  position: relative;
+
+  width: 100%;
+  max-width: 190px;
+  height: 240px;
+}
+
+/* ========================================
+   IMAGE WRAPPER
+======================================== */
+
+.imageWrapper {
+  position: relative;
+
+  width: 100%;
+  max-width: 230px;
+  height: 270px;
+}
+
+/* ========================================
+   IMAGE
+======================================== */
+
+.image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: none;
+  transition: none;
+}
+
+/* ========================================
+   HANDWRITTEN TEXT
+======================================== */
+
+.handwritten {
+  position: absolute;
+  z-index: 1;
+
+  right: -0.5rem;
+  bottom: -0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transform: rotate(-8deg);
+
+  color: $color-burgundy;
+
+  span {
+    font-family: $font-heading;
+    font-size: clamp(1rem, 1.3vw, 1.4rem);
+    font-style: italic;
+
+    line-height: 1.1;
+    text-align: center;
+  }
+}
+
+/* ========================================
+   HANDWRITTEN ARROW
+======================================== */
+
+.handwrittenArrow {
+  position: absolute;
+
+  right: 65%;
+  bottom: 65%;
+
+  width: 75px;
+  height: 50px;
+
+  transform: rotate(-15deg);
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   LARGE DESKTOP
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-block: 4rem;
+  }
+
+  .title {
+    font-size: 3.4rem;
+  }
+
+  .list {
+    gap: 1.15rem;
+  }
+
+  .itemText {
+    font-size: 0.9rem;
+  }
+
+  .visual {
+    min-height: 320px;
+  }
+
+  .imageWrapper {
+    max-width: 260px;
+    height: 300px;
+  }
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+
+    gap: 1rem;
+
+    padding: 2.75rem 1.5rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 3vw, 2.7rem);
+  }
+
+  .itemText {
+    font-size: 0.8rem;
+  }
+
+  .visual {
+    display: none;
+  }
+
+  .imageWrapper {
+    max-width: 180px;
+    height: 230px;
+  }
+
+  .handwritten {
+    right: -0.25rem;
+
+    span {
+      font-size: 1.15rem;
+    }
+  }
+
+  .handwrittenArrow {
+    width: 55px;
+    height: 40px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 767px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 1.5rem;
+
+    padding: 2.75rem 0;
+  }
+
+  /* CONTENT */
+
+  .content {
+    width: 100%;
+  }
+
+  /* TITLE */
+
+  .title {
+    margin-bottom: 1.35rem;
+
+    font-size: clamp(2.4rem, 8vw, 3rem);
+  }
+
+  /* LIST */
+
+  .list {
+    gap: 1rem;
+  }
+
+  /* ITEM */
+
+  .item {
+    gap: 0.75rem;
+  }
+
+  /* CHECK */
+
+  .check {
+    width: 22px;
+    height: 22px;
+
+    flex-basis: 22px;
+  }
+
+  /* TEXT */
+
+  .itemText {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  /* VISUAL */
+
+  .visual {
+display: none;
+  }
+
+  /* IMAGE */
+
+  .imageWrapper {
+    max-width: 220px;
+    height: 260px;
+  }
+
+  /* HANDWRITTEN */
+
+  .handwritten {
+    right: 8%;
+    bottom: 0;
+
+    span {
+      font-size: 1.4rem;
+    }
+  }
+
+  .handwrittenArrow {
+    width: 65px;
+    height: 45px;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    padding-block: 2.25rem;
+  }
+
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .itemText {
+    font-size: 0.8rem;
+  }
+
+  .visual {
+    display: none;
+  }
+
+  .imageWrapper {
+    max-width: 190px;
+    height: 230px;
+  }
+
+  .handwritten {
+    right: 3%;
+
+    span {
+      font-size: 1.2rem;
+    }
+  }
+}

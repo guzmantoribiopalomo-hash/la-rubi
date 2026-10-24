@@ -1,0 +1,561 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   FRANCHISE INVESTMENT
+======================================== */
+
+.investment {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 3fr);
+  align-items: center;
+
+  gap: clamp(2rem, 3vw, 4rem);
+
+  width: 100%;
+  min-width: 0;
+
+  padding-block: 3.5rem;
+}
+
+/* ========================================
+   INTRODUCTION
+======================================== */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.25rem;
+
+  font-family: $font-heading;
+  font-size: clamp(2.2rem, 3vw, 3.7rem);
+  font-weight: 400;
+
+  line-height: 1.05;
+  letter-spacing: -1px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 350px;
+
+  margin: 0 0 1.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.85rem;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.65rem;
+
+  min-height: 44px;
+
+  padding: 0.75rem 1.5rem;
+
+  border: 2px solid $color-burgundy;
+  border-radius: 50px;
+
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  svg {
+    flex-shrink: 0;
+
+    width: 16px;
+    height: 16px;
+
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-burgundy;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-burgundy;
+    outline-offset: 4px;
+  }
+}
+
+/* ========================================
+   INVESTMENT ITEMS
+======================================== */
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+
+  gap: clamp(1rem, 2vw, 2.5rem);
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   INVESTMENT ITEM
+======================================== */
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+
+  text-align: center;
+}
+
+/* ========================================
+   IMAGE WRAPPER
+======================================== */
+
+.imageWrapper {
+  position: relative;
+
+  width: 100%;
+  max-width: 210px;
+  height: 160px;
+
+  margin-bottom: 0.75rem;
+
+  flex-shrink: 0;
+}
+
+/* ========================================
+   IMAGE
+======================================== */
+
+.image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: none;
+  transition: none;
+}
+
+/* ========================================
+   ITEM CONTENT
+======================================== */
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   ITEM TITLE
+======================================== */
+
+.itemTitle {
+  margin: 0 0 0.3rem;
+
+  font-family: $font-heading;
+  font-size: clamp(1.25rem, 1.5vw, 1.8rem);
+  font-weight: 400;
+
+  line-height: 1.15;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   ITEM VALUE
+======================================== */
+
+.itemValue {
+  margin: 0 0 0.65rem;
+
+  font-family: $font-primary;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  line-height: 1.4;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   ITEM DESCRIPTION
+======================================== */
+
+.itemDescription {
+  max-width: 230px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    gap: 4rem;
+
+    padding-block: 4rem;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 3vw, 4rem);
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .items {
+    gap: 2.5rem;
+  }
+
+  .imageWrapper {
+    max-width: 240px;
+    height: 185px;
+  }
+
+  .itemTitle {
+    font-size: 1.8rem;
+  }
+
+  .itemValue {
+    font-size: 1rem;
+  }
+
+  .itemDescription {
+    font-size: 0.8rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .container {
+    grid-template-columns: 1fr;
+
+    gap: 2.5rem;
+
+    padding-block: 3rem;
+  }
+
+  .intro {
+    max-width: 650px;
+  }
+
+  .title {
+    font-size: clamp(2.4rem, 4vw, 3.3rem);
+  }
+
+  .description {
+    max-width: 500px;
+  }
+
+  .items {
+    gap: 1.5rem;
+  }
+
+  .imageWrapper {
+    max-width: 190px;
+    height: 150px;
+  }
+
+  .itemTitle {
+    font-size: 1.5rem;
+  }
+
+  .itemValue {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 2rem;
+
+    padding-block: 2.5rem;
+  }
+
+  /* INTRODUCTION */
+
+  .intro {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* EYEBROW */
+
+  .eyebrow {
+    margin-bottom: 0.65rem;
+
+    font-size: 0.7rem;
+  }
+
+  /* TITLE */
+
+  .title {
+    margin-bottom: 1rem;
+
+    font-size: clamp(2.3rem, 8vw, 3rem);
+
+    line-height: 1.05;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 100%;
+
+    margin-bottom: 1.5rem;
+
+    font-size: 0.85rem;
+  }
+
+  /* BUTTON */
+
+  .button {
+    min-height: 44px;
+
+    padding: 0.75rem 1.4rem;
+
+    font-size: 0.7rem;
+  }
+
+  /* ITEMS */
+
+  .items {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1.75rem;
+  }
+
+  /* ITEM */
+
+  .item {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: center;
+
+    gap: 1rem;
+
+    width: 100%;
+
+    text-align: left;
+  }
+
+  /* IMAGE */
+
+  .imageWrapper {
+    width: 110px;
+    height: 110px;
+
+    max-width: none;
+
+    margin: 0;
+  }
+
+  /* CONTENT */
+
+  .itemContent {
+    align-items: flex-start;
+
+    width: 100%;
+
+    text-align: left;
+  }
+
+  /* ITEM TITLE */
+
+  .itemTitle {
+    margin-bottom: 0.3rem;
+
+    font-size: clamp(1.35rem, 5vw, 1.65rem);
+  }
+
+  /* ITEM VALUE */
+
+  .itemValue {
+    margin-bottom: 0.45rem;
+
+    font-size: 0.85rem;
+  }
+
+  /* ITEM DESCRIPTION */
+
+  .itemDescription {
+    max-width: 100%;
+
+    font-size: 0.75rem;
+
+    line-height: 1.45;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    gap: 1.75rem;
+
+    padding-block: 2rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .button {
+    font-size: 0.65rem;
+  }
+
+  .item {
+    grid-template-columns: 90px minmax(0, 1fr);
+
+    gap: 0.75rem;
+  }
+
+  .imageWrapper {
+    width: 90px;
+    height: 90px;
+  }
+
+  .itemTitle {
+    font-size: 1.25rem;
+  }
+
+  .itemValue {
+    font-size: 0.8rem;
+  }
+
+  .itemDescription {
+    font-size: 0.7rem;
+  }
+}

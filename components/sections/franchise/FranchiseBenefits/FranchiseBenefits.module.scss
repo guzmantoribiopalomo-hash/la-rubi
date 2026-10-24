@@ -1,0 +1,359 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   FRANCHISE BENEFITS
+======================================== */
+
+.benefits {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  width: 100%;
+  min-width: 0;
+
+  padding-block: 2.5rem;
+}
+
+/* ========================================
+   GRID
+======================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  align-items: stretch;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* ========================================
+   BENEFIT ITEM
+======================================== */
+
+.item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 0;
+
+  padding: 0.5rem 1.25rem;
+
+  text-align: center;
+
+  /* Vertical separator */
+
+  &:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 15%;
+    right: 0;
+
+    width: 1px;
+    height: 70%;
+
+    background-color: rgba(80, 65, 55, 0.35);
+  }
+}
+
+/* ========================================
+   ICON WRAPPER
+======================================== */
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 54px;
+  height: 54px;
+
+  margin-bottom: 0.75rem;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   ICON
+======================================== */
+
+.icon {
+  display: block;
+
+  width: 42px;
+  height: 42px;
+
+  stroke: currentColor;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  max-width: 175px;
+
+  min-height: 2.8em;
+
+  margin: 0 0 0.6rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  line-height: 1.35;
+  letter-spacing: 0.1px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 190px;
+
+  margin: 0;
+
+  font-family: $font-primary;
+  font-size: 0.8rem;
+  font-weight: 400;
+
+  line-height: 1.5;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    padding-block: 3rem;
+  }
+
+  .item {
+    padding-inline: 1.75rem;
+  }
+
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+
+    margin-bottom: 0.85rem;
+  }
+
+  .icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   768px - 1023px
+======================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding-block: 2.75rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    row-gap: 2.5rem;
+  }
+
+  .item {
+    grid-column: span 2;
+
+    padding-inline: 1rem;
+
+    &:not(:last-child)::after {
+      display: none;
+    }
+
+    /* First row: 3 benefits */
+
+    &:nth-child(-n + 2)::after {
+      display: block;
+    }
+
+    /* Second row: 2 centered benefits */
+
+    &:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    &:nth-child(5) {
+      grid-column: 4 / span 2;
+    }
+
+    &:nth-child(4)::after {
+      display: block;
+    }
+  }
+
+  .title {
+    font-size: 0.75rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .container {
+    padding-block: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: 0;
+    row-gap: 1.75rem;
+  }
+
+  /* BENEFIT ITEM */
+
+  .item {
+    padding: 0.25rem 0.75rem;
+
+    &:not(:last-child)::after {
+      display: none;
+    }
+
+    /* Separators between pairs */
+
+    &:nth-child(odd):not(:last-child)::after {
+      display: block;
+
+      top: 10%;
+      right: 0;
+
+      height: 80%;
+    }
+
+    /* Last item centered */
+
+    &:last-child {
+      grid-column: 1 / -1;
+
+      width: 50%;
+
+      justify-self: center;
+    }
+  }
+
+  /* ICON */
+
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 0.65rem;
+  }
+
+  .icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* TITLE */
+
+  .title {
+    max-width: 160px;
+
+    min-height: auto;
+
+    margin-bottom: 0.5rem;
+
+    font-size: 0.7rem;
+
+    line-height: 1.3;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 170px;
+
+    font-size: 0.75rem;
+
+    line-height: 1.45;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .container {
+    padding-block: 1.75rem;
+  }
+
+  .grid {
+    row-gap: 1.5rem;
+  }
+
+  .item {
+    padding-inline: 0.5rem;
+  }
+
+  .iconWrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  .icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .title {
+    font-size: 0.65rem;
+  }
+
+  .description {
+    font-size: 0.7rem;
+  }
+}

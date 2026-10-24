@@ -1,0 +1,583 @@
+@use "../../../../styles/abstracts/variables" as *;
+@use "../../../../styles/abstracts/mixins" as *;
+
+/* ========================================
+   FRANCHISE HERO
+======================================== */
+
+.hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 480px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background-color: $color-cream;
+}
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background {
+  position: absolute;
+  inset: 0;
+
+  z-index: -2;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/* ========================================
+   BACKGROUND IMAGE
+======================================== */
+
+.image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  // Sin zoom ni transiciones
+  transform: none;
+  transition: none;
+}
+
+.desktopImage {
+  display: block;
+}
+
+.mobileImage {
+  display: none;
+}
+
+/* ========================================
+   OVERLAY
+======================================== */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    rgba(250, 247, 223, 0.98) 0%,
+    rgba(250, 247, 223, 0.94) 15%,
+    rgba(250, 247, 223, 0.75) 30%,
+    rgba(250, 247, 223, 0.35) 43%,
+    rgba(250, 247, 223, 0.05) 58%,
+    transparent 72%
+  );
+}
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+  @include container;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 2rem;
+
+  width: 100%;
+  min-width: 0;
+
+  padding-block: 4.5rem;
+}
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.content {
+  width: 100%;
+  max-width: 470px;
+  min-width: 0;
+}
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   TITLE
+======================================== */
+
+.title {
+  margin: 0 0 1.25rem;
+
+  font-family: $font-heading;
+  font-size: clamp(3rem, 4.5vw, 5.2rem);
+  font-weight: 400;
+
+  line-height: 0.98;
+  letter-spacing: -1.5px;
+
+  color: $color-burgundy;
+}
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.description {
+  max-width: 420px;
+
+  margin: 0 0 1.75rem;
+
+  font-family: $font-primary;
+  font-size: 0.95rem;
+  font-weight: 400;
+
+  line-height: 1.55;
+
+  color: $color-dark;
+}
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.75rem;
+}
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  min-height: 44px;
+
+  padding: 0.75rem 1.4rem;
+
+  border: 2px solid $color-burgundy;
+  border-radius: 50px;
+
+  font-family: $font-primary;
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  svg {
+    flex-shrink: 0;
+
+    width: 16px;
+    height: 16px;
+
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-burgundy;
+    outline-offset: 4px;
+  }
+}
+
+/* ========================================
+   PRIMARY BUTTON
+======================================== */
+
+.primaryButton {
+  background-color: $color-burgundy;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-burgundy;
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
+}
+
+/* ========================================
+   SECONDARY BUTTON
+======================================== */
+
+.secondaryButton {
+  background-color: $color-cream;
+  color: $color-burgundy;
+
+  &:hover {
+    background-color: $color-burgundy;
+    color: $color-white;
+  }
+}
+
+/* ========================================
+   DECORATIVE TEXT
+======================================== */
+
+.decorativeText {
+  position: absolute;
+
+  right: 1rem;
+  bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: $font-heading;
+  font-size: clamp(1.4rem, 2vw, 2.3rem);
+  font-style: italic;
+
+  line-height: 1.15;
+  text-align: center;
+
+  color: $color-white;
+
+  transform: rotate(-8deg);
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   DECORATIVE LINE
+======================================== */
+
+.decorativeLine {
+  display: block;
+
+  width: 110px;
+  height: 2px;
+
+  margin-top: 0.75rem;
+
+  border-radius: 50%;
+
+  background-color: $color-white;
+
+  transform: rotate(-12deg);
+}
+
+/* ========================================
+   LARGE DESKTOP
+   >= 1440px
+======================================== */
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 540px;
+  }
+
+  .container {
+    padding-block: 5.5rem;
+  }
+
+  .content {
+    max-width: 520px;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 4.5vw, 5.8rem);
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .decorativeText {
+    right: 2rem;
+    bottom: 3.5rem;
+  }
+}
+
+/* ========================================
+   TABLET
+   <= 1023px
+======================================== */
+
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 470px;
+  }
+
+  .container {
+    padding-block: 4rem;
+  }
+
+  .content {
+    max-width: 410px;
+  }
+
+  .title {
+    font-size: clamp(2.8rem, 5vw, 4rem);
+  }
+
+  .description {
+    max-width: 370px;
+    font-size: 0.85rem;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      90deg,
+      rgba(250, 247, 223, 0.98) 0%,
+      rgba(250, 247, 223, 0.88) 30%,
+      rgba(250, 247, 223, 0.4) 55%,
+      transparent 85%
+    );
+  }
+
+  .decorativeText {
+    right: 1rem;
+    bottom: 2rem;
+
+    font-size: 1.3rem;
+  }
+}
+
+/* ========================================
+   MOBILE
+   <= 767px
+======================================== */
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 610px;
+
+    align-items: flex-start;
+
+    background-color: $color-dark;
+  }
+
+  /* BACKGROUND */
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* OVERLAY */
+
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 12, 8, 0.85) 0%,
+      rgba(20, 12, 8, 0.65) 35%,
+      rgba(20, 12, 8, 0.25) 70%,
+      rgba(20, 12, 8, 0.15) 100%
+    );
+  }
+
+  /* CONTAINER */
+
+  .container {
+    align-items: flex-start;
+
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* CONTENT */
+
+  .content {
+    max-width: 100%;
+  }
+
+  /* EYEBROW */
+
+  .eyebrow {
+    margin-bottom: 0.65rem;
+
+    font-size: 0.7rem;
+
+    color: $color-white;
+  }
+
+  /* TITLE */
+
+  .title {
+    margin-bottom: 1.25rem;
+
+    font-size: clamp(2.8rem, 10vw, 4rem);
+
+    line-height: 0.98;
+    letter-spacing: -1px;
+
+    color: $color-white;
+  }
+
+  /* DESCRIPTION */
+
+  .description {
+    max-width: 340px;
+
+    margin-bottom: 1.75rem;
+
+    font-size: 0.85rem;
+    line-height: 1.55;
+
+    color: $color-white;
+  }
+
+  /* ACTIONS */
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0.75rem;
+
+    width: 100%;
+    max-width: 290px;
+  }
+
+  /* BUTTON */
+
+  .button {
+    width: 100%;
+    min-height: 44px;
+
+    font-size: 0.7rem;
+  }
+
+  /* PRIMARY BUTTON */
+
+  .primaryButton {
+    background-color: $color-burgundy;
+    color: $color-white;
+  }
+
+  /* SECONDARY BUTTON */
+
+  .secondaryButton {
+    background-color: $color-cream;
+    color: $color-burgundy;
+
+    border-color: $color-cream;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-burgundy;
+    }
+  }
+
+  /* DECORATIVE TEXT */
+
+  .decorativeText {
+    right: 1.5rem;
+    bottom: 2.5rem;
+
+    font-size: 1.3rem;
+  }
+
+  .decorativeLine {
+    width: 80px;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+   <= 380px
+======================================== */
+
+@media (max-width: 380px) {
+  .hero {
+    min-height: 580px;
+  }
+
+  .container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .title {
+    font-size: clamp(2.5rem, 10vw, 3.2rem);
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .actions {
+    max-width: 100%;
+  }
+
+  .button {
+    font-size: 0.65rem;
+  }
+
+  .decorativeText {
+    right: 1rem;
+    bottom: 2rem;
+
+    font-size: 1.1rem;
+  }
+}
